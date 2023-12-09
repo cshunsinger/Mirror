@@ -83,10 +83,6 @@ namespace Mirror
         /// <summary>Check if client is connected (after connecting).</summary>
         public static bool isConnected => connectState == ConnectState.Connected;
 
-        // Deprecated 2022-12-12
-        [Obsolete("NetworkClient.isHostClient was renamed to .activeHost to be more obvious")]
-        public static bool isHostClient => activeHost;
-
         // OnConnected / OnDisconnected used to be NetworkMessages that were
         // invoked. this introduced a bug where external clients could send
         // Connected/Disconnected messages over the network causing undefined
@@ -129,6 +125,16 @@ namespace Mirror
         // this is set by a virtual function in NetworkManager,
         // which allows users to overwrite it with their own estimations.
         public static ConnectionQuality connectionQuality = ConnectionQuality.ESTIMATING;
+        public static ConnectionQuality lastConnectionQuality = ConnectionQuality.ESTIMATING;
+        public static ConnectionQualityMethod connectionQualityMethod = ConnectionQualityMethod.Simple;
+        public static float connectionQualityInterval = 3;
+        static double lastConnectionQualityUpdate;
+
+        /// <summary>
+        /// Invoked when connection quality changes.
+        /// <para>First argument is the old quality, second argument is the new quality.</para>
+        /// </summary>
+        public static event Action<ConnectionQuality, ConnectionQuality> onConnectionQualityChanged;
 
         // initialization //////////////////////////////////////////////////////
         static void AddTransportHandlers()
@@ -215,10 +221,6 @@ namespace Mirror
             connectState = ConnectState.Connected;
             HostMode.SetupConnections();
         }
-
-        // Deprecated 2022-12-12
-        [Obsolete("NetworkClient.ConnectLocalServer was moved to HostMode.InvokeOnConnected")]
-        public static void ConnectLocalServer() => HostMode.InvokeOnConnected();
 
         // disconnect //////////////////////////////////////////////////////////
         /// <summary>Disconnect from server.</summary>
@@ -1517,6 +1519,38 @@ namespace Mirror
                 {
                     Broadcast();
                 }
+
+                UpdateConnectionQuality();
+            }
+
+            // Connection Quality //////////////////////////////////////////////////
+            // uses 'pragmatic' version based on snapshot interpolation by default.
+            void UpdateConnectionQuality()
+            {
+                // only recalculate every few seconds
+                // we don't want to fire Good->Bad->Good->Bad dozens of times per second.
+                if (connectionQualityInterval > 0 && NetworkTime.time > lastConnectionQualityUpdate + connectionQualityInterval)
+                {
+                    lastConnectionQualityUpdate = NetworkTime.time;
+
+                    switch (connectionQualityMethod)
+                    {
+                        case ConnectionQualityMethod.Simple:
+                            connectionQuality = ConnectionQualityHeuristics.Simple(NetworkTime.rtt, NetworkTime.rttVariance);
+                            break;
+                        case ConnectionQualityMethod.Pragmatic:
+                            connectionQuality = ConnectionQualityHeuristics.Pragmatic(initialBufferTime, bufferTime);
+                            break;
+                    }
+
+                    if (lastConnectionQuality != connectionQuality)
+                    {
+                        // Invoke the event before assigning the new value so
+                        // the event handler can compare old and new values.
+                        onConnectionQualityChanged?.Invoke(lastConnectionQuality, connectionQuality);
+                        lastConnectionQuality = connectionQuality;
+                    }
+                }
             }
 
             // update connections to flush out messages _after_ broadcast
@@ -1711,7 +1745,7 @@ namespace Mirror
             // only if in world
             if (!ready) return;
 
-            GUILayout.BeginArea(new Rect(10, 5, 1000, 50));
+            GUILayout.BeginArea(new Rect(10, 5, 1020, 50));
 
             GUILayout.BeginHorizontal("Box");
             GUILayout.Label("Snapshot Interp.:");

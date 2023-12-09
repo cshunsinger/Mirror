@@ -1,15 +1,16 @@
 ![Mirror Logo](https://user-images.githubusercontent.com/16416509/119120944-6db26780-ba5f-11eb-9cdd-fc8500207f4d.png)
-
-[![Download](https://img.shields.io/badge/asset_store-brightgreen.svg)](https://assetstore.unity.com/packages/tools/network/mirror-129321)
-[![Documentation](https://img.shields.io/badge/docs-brightgreen.svg)](https://mirror-networking.gitbook.io/)
-[![Showcase](https://img.shields.io/badge/showcase-brightgreen.svg)](https://mirror-networking.com/showcase/)
-[![Video Tutorials](https://img.shields.io/badge/video_tutorial-brightgreen.svg)](https://mirror-networking.gitbook.io/docs/community-guides/video-tutorials)
-[![Forum](https://img.shields.io/badge/forum-brightgreen.svg)](https://forum.unity.com/threads/mirror-networking-for-unity-aka-hlapi-community-edition.425437/)
-[![Build](https://img.shields.io/appveyor/ci/vis2k73562/hlapi-community-edition/Mirror.svg)](https://ci.appveyor.com/project/vis2k73562/hlapi-community-edition/branch/mirror)
-[![Discord](https://img.shields.io/discord/343440455738064897.svg)](https://discordapp.com/invite/xVW4nU4C34)
-[![release](https://img.shields.io/github/release/vis2k/Mirror.svg)](https://github.com/vis2k/Mirror/releases/latest)
-[![License: MIT](https://img.shields.io/badge/License-MIT-brightgreen.svg)](https://github.com/vis2k/Mirror/blob/master/LICENSE)
-[![Roadmap](https://img.shields.io/badge/roadmap-blue.svg)](https://trello.com/b/fgAE7Tud)
+<p align="center">
+<a href="https://assetstore.unity.com/packages/tools/network/mirror-129321"><img src="https://img.shields.io/badge/download-brightgreen.svg?style=for-the-badge&logo=unity&colorA=363a4f&colorB=f5a97f" alt="Download"></a>
+<a href="https://github.com/MirrorNetworking/Mirror#made-with-mirror"><img src="https://img.shields.io/badge/showcase-brightgreen.svg?style=for-the-badge&logo=github&colorA=363a4f&colorB=f5a97f" alt="Showcase"></a>
+<a href="https://mirror-networking.gitbook.io/"><img src="https://img.shields.io/badge/docs-brightgreen.svg?style=for-the-badge&logo=gitbook&logoColor=white&colorA=363a4f&colorB=f5a97f" alt="Documentation"></a>
+<a href="https://forum.unity.com/threads/mirror-networking-for-unity-aka-hlapi-community-edition.425437/"><img src="https://img.shields.io/badge/forum-brightgreen.svg?style=for-the-badge&logo=unity&colorA=363a4f&colorB=f5a97f" alt="Forum"></a>
+<a href="https://trello.com/b/fgAE7Tud"><img src="https://img.shields.io/badge/roadmap-brightgreen.svg?style=for-the-badge&logo=trello&colorA=363a4f&colorB=f5a97f" alt="Roadmap"></a>
+<br>
+<a href="https://github.com/vis2k/Mirror/blob/master/LICENSE"><img src="https://img.shields.io/badge/License-MIT-brightgreen.svg?style=for-the-badge&colorA=363a4f&colorB=b7bdf8" alt="License: MIT"></a>
+<a href="https://ci.appveyor.com/project/vis2k73562/hlapi-community-edition/branch/mirror"><img src="https://img.shields.io/appveyor/ci/vis2k73562/hlapi-community-edition/Mirror.svg?style=for-the-badge&colorA=363a4f&colorB=b7bdf8" alt="Build"></a>
+<a href="https://github.com/vis2k/Mirror/releases/latest"><img src="https://img.shields.io/github/release/vis2k/Mirror.svg?style=for-the-badge&colorA=363a4f&colorB=b7bdf8" alt="release"></a>
+<a href="https://discordapp.com/invite/xVW4nU4C34"><img src="https://img.shields.io/discord/343440455738064897.svg?style=for-the-badge&colorA=363a4f&colorB=b7bdf8" alt="Discord"></a>
+</p>
 
 **It's only the dreamers who ever move mountains.**
 
@@ -25,6 +26,40 @@ Originally based on [**UNET**](https://blog.unity.com/technology/announcing-unet
 Mirror is **[stable](https://mirror-networking.gitbook.io/docs/general/tests)**, [**modular**](#low-level-transports) & **[easy to use](https://mirror-networking.gitbook.io/)** for all types of games, even small [**MMORPGs**](#made-with-mirror) 🎮.
 
 **Made in 🇩🇪🇺🇸🇬🇧🇸🇬🇹🇼 with ❤️**.
+
+---
+## Features
+
+Mirror comes with a wide variety of features to support all game genres.<br>
+Many of our features quickly became the norm across all Unity netcodes!<br>
+
+| Feature                       | Description                                                 | Status          |
+|-------------------------------|-------------------------------------------------------------|-----------------|
+| 🎛 **Transports**             | UDP, TCP, Websockets, Steam, Relay and more.                | **Stable**      | 
+| 🪜 **Interest Management**    | Spatial Hashing & Distance Checker to partition the world.  | **Stable**      |
+| ↗️ **SyncDirection**          | Server & Client Authority - per component with one click.   | **Stable**      |
+| 🐌 **Latency Simulation**     | Simulate latency, packet loss & jitter locally.             | **Stable**      |
+| 🧲 **Batching**               | Minimize message overhead via batching automatically.       | **Stable**      |
+| 💌 **RPCs & SyncVars**        | Synced vars and remote function calls built in & safe.      | **Stable**      |
+| 🙅‍♀️**Allocation Free**      | Free of runtime allocations and no GC (except Transports).  | **Stable**      |
+| 🛞  **Transform & Physics**   | Transform & Physics sync built in.                          | **Stable**      |
+| 👩‍🍼 **Child Components**    | Put networked components on anything.                       | **Stable**      |
+| 🪚️ **IL Post Processing**    | Zero overhead [Rpcs] and [Commands] via IL post processing! | **Stable**      |
+|                               |                                                             |                 |
+| 📏 **Snapshot Interp.**       | Perfectly smooth movement for all platforms and all games.  | **Stable**      |
+| 🔫 **Lag Compensation**       | Roll back state to see what the player saw during input.    | **Preview**     |
+| 🏎 **Prediction**             | Inputs are applied immediately & corrected automatically.   | **Preview**     |
+|                               |                                                             |                 |
+| 🧙‍♂️ **General Purpose**     | Mirror supports all genres for all your games!              |                 |
+| 🧘‍♀️ **Stable API**          | Long term (10 years)  stability instead of new versions!    |
+| 🔬 **Battle Tested**          | Mirror servers over 100 million players. It just works!     |                 |
+| 💴 **Free & Open Source**     | MIT licensed without any restrictions to minimize risk!     |                 |
+| ❤️ **Community**              | Join our Discord with nearly 15.000 developers world wide!  |                 |
+| 🧜🏻‍♀️ **Long Term Support** | Maintained since 2014 with optional LTS version!            |                 |
+|                               |                                                             |                 |
+| 🦖 **Deterministic Physics**  | Open source deterministic physics for C# & Unity!           | **Researching** |
+| 📐 **Bitpacking**             | Optimized compression (bools as 1 bit etc.)                 | **Researching** |
+| 🔒 **Encryption**             | Secure communication with end-to-end encryption.            | **Researching** |
 
 ---
 ## Architecture
@@ -76,7 +111,7 @@ And that's about it 🤩
 
 🤝 We are a team of **professional** game developers, who are paid to **use Mirror in production**. Our incentives will always align with the community, because we are Mirror users just like you! 
 
-❤️ Our [**fantastic community**](https://discordapp.com/invite/xVW4nU4C34) of over **14,000** users contributes feedback & improvements every day. Please join us on our journey, help others, and consider a [**Donation**](https://github.com/sponsors/vis2k) if you love our work!
+❤️ Our [**fantastic community**](https://discordapp.com/invite/xVW4nU4C34) of over **14,000** users contributes feedback & improvements every day. Please join us on our journey, help others, and consider a [**Donation**](https://github.com/sponsors/miwarnec) if you love our work!
 
 <img src="https://user-images.githubusercontent.com/16416509/195067704-5577b581-b829-4c9f-80d0-b6270a3a59e7.png" title="Fitzcarraldo"/>
 
@@ -112,6 +147,12 @@ In addition to [24/7 support](https://github.com/sponsors/vis2k) from the Mirror
 
 **Population: ONE** was [acquired by Meta](https://uploadvr.com/population-one-facebook-bigbox-acquire/) in June 2021, and they've just released a new [Sandbox](https://www.youtube.com/watch?v=jcI0h8dn9tA) addon in 2022!
 
+### [Zooba](https://play.google.com/store/apps/details?id=com.wildlife.games.battle.royale.free.zooba&gl=US)
+[![Zooba](https://user-images.githubusercontent.com/16416509/178141846-60805ad5-5a6e-4840-8744-5194756c2a6d.jpg)](https://play.google.com/store/apps/details?id=com.wildlife.games.battle.royale.free.zooba&gl=US)
+[Wildlife Studio's](https://wildlifestudios.com/) hit Zooba made it to rank #5 of the largest battle royal shooters in the U.S. mobile market.
+
+The game has over **100 million** downloads on [Google Play](https://play.google.com/store/apps/details?id=com.wildlife.games.battle.royale.free.zooba&gl=US), with Wildlife Studios as one of the top 10 largest mobile gaming companies in the world.
+
 ### [Swarm VR](https://www.swarmvrgame.com/)
 [![swarmvr_compressed](https://user-images.githubusercontent.com/16416509/222610677-fa38f173-f76b-422f-b39d-8e0ef0cee798.jpg)](https://www.swarmvrgame.com/)
 SPIDER-MAN WITH GUNS! 
@@ -125,6 +166,14 @@ Available for the [Meta Quest](https://www.oculus.com/experiences/quest/22360534
 Nudge Nudge Games' first title: the colorful, post-apocalyptic open world sandbox game [Nimoyd](https://store.steampowered.com/app/1313210/Nimoyd__Survival_Sandbox/) is being developed with Mirror.
 
 _Soon to be released for PC & mobile!_
+
+### [Unleashed](https://www.unleashedgames.io/)
+[![unleashed](https://github.com/MirrorNetworking/Mirror/assets/16416509/ef3bcf74-8fa9-4d22-801d-4d29cb59a013)](https://www.unleashedgames.io/)
+From original devs of **World of Warcraft**, **Kingdoms of Amalur**, and **EverQuest** comes a new family friendly fantasy adventure. Fight against the forces of darkness, explore a world consumed by wild magic, and build a stronghold with your friends to increase your power in a new world.
+
+_Lead by industry veterans Brian Birmingham & Irena Pereira, Unleashed is developing their next gen adventure game made with Mirror!_
+
+Follow them on X: https://twitter.com/UnleashingGames/
 
 ### [Dinkum](https://store.steampowered.com/app/1062520/Dinkum/)
 [![dinkum](https://user-images.githubusercontent.com/16416509/180051810-50c9ebfd-973b-4f2f-8448-d599443d9ce3.jpg)](https://store.steampowered.com/app/1062520/Dinkum/)
@@ -162,17 +211,17 @@ A sandbox survival samurai MMORPG, originally released in September 2016.
 
 Later on, the Netherlands based Maple Media switched their netcode to Mirror.
 
+### [Another Dungeon](https://www.gameduo.net/en/game/ad)
+![image](https://github.com/MirrorNetworking/Mirror/assets/16416509/9b47438c-e664-47aa-996e-d1701b0a2efd)
+Pixel Art Dungeon MMORPG reaching 5000 CCU at peak times.
+
+Originally developed as a single-player idle game, it underwent a transition to an MMORPG three months before release thanks to Mirror!
+
 ### [Untamed Isles](https://store.steampowered.com/app/1823300/Untamed_Isles/)
 [![Untamed Isles](https://user-images.githubusercontent.com/16416509/178143679-1c325b54-0938-4e84-97b6-b59db62a51e7.jpg)](https://store.steampowered.com/app/1823300/Untamed_Isles/)
 The turn based, monster taming **MMORPG** [Untamed Isles](https://store.steampowered.com/app/1823300/Untamed_Isles/) is currently being developed by [Phat Loot Studios](https://untamedisles.com/about/).
 
 After their successful [Kickstarter](https://www.kickstarter.com/projects/untamedisles/untamed-isles), the New Zealand based studio is aiming for a 2022 release date.
-
-### [Zooba](https://play.google.com/store/apps/details?id=com.wildlife.games.battle.royale.free.zooba&gl=US)
-[![Zooba](https://user-images.githubusercontent.com/16416509/178141846-60805ad5-5a6e-4840-8744-5194756c2a6d.jpg)](https://play.google.com/store/apps/details?id=com.wildlife.games.battle.royale.free.zooba&gl=US)
-[Wildlife Studio's](https://wildlifestudios.com/) hit Zooba made it to rank #5 of the largest battle royal shooters in the U.S. mobile market.
-
-The game has over **50 million** downloads on [Google Play](https://play.google.com/store/apps/details?id=com.wildlife.games.battle.royale.free.zooba&gl=US), with Wildlife Studios as one of the top 10 largest mobile gaming companies in the world.
 
 ### [Portals](https://theportal.to/)
 [![Portals](https://user-images.githubusercontent.com/9826063/209373815-8e6288ba-22fc-4cee-8867-19f587188827.png)](https://theportal.to/)
@@ -209,6 +258,7 @@ Castaway runs in the Browser, thanks to Mirror's WebGL support.
 [Overwpowered](https://overpoweredcardgame.com/), the exciting new card game that combines strategy, myth, and fun into one riveting web-based experience. Launched in 2023, made with Mirror!
 
 ### And many more...
+<a href="https://store.steampowered.com/app/1797130/Plunder_Scourge_of_the_Sea/"><img src="https://cdn.akamai.steamstatic.com/steam/apps/1797130/header.jpg?t=1698422797" height="100" title="Plunder: Scourge of the Sea Pirate MMO"/></a>
 <a href="https://store.steampowered.com/app/719200/The_Wall/"><img src="https://cdn.akamai.steamstatic.com/steam/apps/719200/header.jpg?t=1588105839" height="100" title="The wall"/></a>
 <a href="https://store.steampowered.com/app/535630/One_More_Night/"><img src="https://cdn.akamai.steamstatic.com/steam/apps/535630/header.jpg?t=1584831320" height="100" title="One more night"/></a>
 <img src="https://i.ytimg.com/vi/D_f_MntrLVE/maxresdefault.jpg" height="100" title="Block story"/>
@@ -220,11 +270,13 @@ Castaway runs in the Browser, thanks to Mirror's WebGL support.
 <a href="https://www.unitystation.org"><img src="https://user-images.githubusercontent.com/57072365/204021428-0c621067-d580-4c88-b551-3ac70f9da39d.jpg" title="UnityStation" height="100"/></a>
 <a href="https://store.steampowered.com/app/1970020/__Touhou_Fairy_Knockout__One_fairy_to_rule_them_all/"><img src="https://github.com/MirrorNetworking/Mirror/assets/16416509/dc1286a8-b619-4f68-9dfe-6a501be7e233" title="Touhou Fairy Knockout" height="100"/></a>
 <a href="https://store.steampowered.com/app/2168680/Nuclear_Option/"><img src="https://github.com/MirrorNetworking/Mirror/assets/16416509/4e98520e-9bde-4305-8b02-bada090a02dd" title="Nuclear Option" height="100"/></a>
+<a href="https://store.steampowered.com/app/2499940/Shattered_Lands/"><img src="https://github.com/MirrorNetworking/Mirror/assets/57072365/52930403-c1d1-4c27-9477-e03215acbda5" title="Shattered Lands" height="100"/></a>
+<a href="https://store.steampowered.com/app/1955340/Super_Raft_Boat_Together"><img src="https://github.com/MirrorNetworking/Mirror/assets/57072365/0d30b84a-0b2b-4790-8687-d95e2fa23df1" title="Super Raft Boat Together" height="100"/></a>
 
 ## Modular Transports
 Mirror uses **KCP** (reliable UDP) by default, but you may use any of our community transports for low level packet sending:
-* (built in) [KCP](https://github.com/vis2k/kcp2k): reliable UDP
-* (built in) [Telepathy](https://github.com/vis2k/Telepathy): TCP
+* (built in) [KCP](https://github.com/MirrorNetworking/kcp2k): reliable UDP
+* (built in) [Telepathy](https://github.com/MirrorNetworking/Telepathy): TCP
 * (built in) [Websockets](https://github.com/MirrorNetworking/SimpleWebTransport): Websockets
 * [Ignorance](https://github.com/SoftwareGuy/Ignorance/): ENET UDP
 * [LiteNetLib](https://github.com/MirrorNetworking/LiteNetLibTransport/) UDP

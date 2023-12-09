@@ -146,7 +146,7 @@ GameObject:
   - component: {fileID: 3429911415116987811}
   - component: {fileID: 1848203816128897140}
   - component: {fileID: 6607303410184343467}
-  - component: {fileID: -2991986576794647411}
+  - component: {fileID: -2068612481632719751}
   m_Layer: 0
   m_Name: WhitePredicted
   m_TagString: Untagged
@@ -198,7 +198,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: e88ccd07dc10d443b808d53676994410, type: 2}
+  - {fileID: 2100000, guid: cc250a30997cc42318e82a6ec42171db, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -232,6 +232,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9b91ecbcc199f4492b9a91e820070131, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  clientStarted: 0
   sceneId: 0
   _assetId: 2140274599
   serverOnly: 0
@@ -283,8 +284,9 @@ MonoBehaviour:
   syncInterval: 0
   dragIndicator: {fileID: 982362982}
   rigidBody: {fileID: 1848203816128897140}
-  forceMultiplier: 100
---- !u!114 &-2991986576794647411
+  forceMultiplier: 2
+  maxForce: 40
+--- !u!114 &-2068612481632719751
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -293,28 +295,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 3429911415116987808}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3b20dc110904e47f8a154cdcf6433eae, type: 3}
+  m_Script: {fileID: 11500000, guid: d38927cdc6024b9682b5fe9778b9ef99, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncDirection: 0
   syncMode: 0
-  syncInterval: 0
-  target: {fileID: 3429911415116987812}
-  clientAuthority: 0
-  syncPosition: 1
-  syncRotation: 1
-  syncScale: 0
-  interpolatePosition: 1
-  interpolateRotation: 1
-  interpolateScale: 0
-  coordinateSpace: 0
-  sendIntervalMultiplier: 1
-  timelineOffset: 0
-  showGizmos: 0
-  showOverlay: 0
-  overlayColor: {r: 0, g: 0, b: 0, a: 0.5}
-  onlySyncOnChange: 0
-  bufferResetMultiplier: 3
-  positionSensitivity: 0.01
-  rotationSensitivity: 0.01
-  scaleSensitivity: 0.01
+  syncInterval: 0.1
+  stateHistoryLimit: 32
+  correctionThreshold: 0.1
+  oneFrameAhead: 1
+  correctionMode: 1
+  ghostMaterial: {fileID: 2100000, guid: 411a48b4a197d4924bec3e3809bc9320, type: 2}
+  lineTime: 10

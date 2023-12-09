@@ -103,11 +103,6 @@ namespace Mirror
             // Use checked() to force it to throw OverflowException if data is invalid
             return count == 0 ? null : reader.ReadBytes(checked((int)(count - 1u)));
         }
-        // DEPRECATED 2023-08-12
-        [Obsolete("ReadBytesAndSizeSegment was renamed to ReadArraySegmentAndSize for clarity.")]
-        public static ArraySegment<byte> ReadBytesAndSizeSegment(this NetworkReader reader) =>
-            ReadArraySegmentAndSize(reader);
-
         // Reads ArraySegment and size header
         /// <exception cref="T:OverflowException">if count is invalid</exception>
         public static ArraySegment<byte> ReadArraySegmentAndSize(this NetworkReader reader)
@@ -154,6 +149,18 @@ namespace Mirror
         // Ray is a struct with properties instead of fields
         public static Ray ReadRay(this NetworkReader reader) => new Ray(reader.ReadVector3(), reader.ReadVector3());
         public static Ray? ReadRayNullable(this NetworkReader reader) => reader.ReadBool() ? ReadRay(reader) : default(Ray?);
+
+        // LayerMask is a struct with properties instead of fields
+        public static LayerMask ReadLayerMask(this NetworkReader reader)
+        {
+            // LayerMask doesn't have a constructor that takes an initial value.
+            // 32 layers as a flags enum, max value of 496, we only need a UShort.
+            LayerMask layerMask = default;
+            layerMask.value = reader.ReadUShort();
+            return layerMask;
+        }
+
+        public static LayerMask? ReadLayerMaskNullable(this NetworkReader reader) => reader.ReadBool() ? ReadLayerMask(reader) : default(LayerMask?);
 
         public static Matrix4x4 ReadMatrix4x4(this NetworkReader reader) => reader.ReadBlittable<Matrix4x4>();
         public static Matrix4x4? ReadMatrix4x4Nullable(this NetworkReader reader) => reader.ReadBlittableNullable<Matrix4x4>();

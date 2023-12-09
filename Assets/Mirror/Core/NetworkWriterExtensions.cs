@@ -106,11 +106,6 @@ namespace Mirror
             writer.WriteBytes(buffer, offset, count);
         }
 
-        // DEPRECATED 2023-08-12
-        [Obsolete("WriteBytesAndSizeSegment was renamed to WriteArraySegmentAndSize for clarity.")]
-        public static void WriteBytesAndSizeSegment(this NetworkWriter writer, ArraySegment<byte> segment) =>
-            WriteArraySegmentAndSize(writer, segment);
-
         // writes ArraySegment of byte (most common type) and size header
         public static void WriteArraySegmentAndSize(this NetworkWriter writer, ArraySegment<byte> segment)
         {
@@ -189,6 +184,19 @@ namespace Mirror
             writer.WriteBool(value.HasValue);
             if (value.HasValue)
                 writer.WriteRay(value.Value);
+        }
+
+        // LayerMask is a struct with properties instead of fields
+        public static void WriteLayerMask(this NetworkWriter writer, LayerMask layerMask)
+        {
+            // 32 layers as a flags enum, max value of 496, we only need a UShort.
+            writer.WriteUShort((ushort)layerMask.value);
+        }
+        public static void WriteLayerMaskNullable(this NetworkWriter writer, LayerMask? layerMask)
+        {
+            writer.WriteBool(layerMask.HasValue);
+            if (layerMask.HasValue)
+                writer.WriteLayerMask(layerMask.Value);
         }
 
         public static void WriteMatrix4x4(this NetworkWriter writer, Matrix4x4 value) => writer.WriteBlittable(value);

@@ -22,14 +22,6 @@ namespace Mirror
         const float DefaultPingInterval = 0.1f; // for resets
         public static float PingInterval = DefaultPingInterval;
 
-        // DEPRECATED 2023-07-06
-        [Obsolete("NetworkTime.PingFrequency was renamed to PingInterval, because we use it as seconds, not as Hz. Please rename all usages, but keep using it just as before.")]
-        public static float PingFrequency
-        {
-            get => PingInterval;
-            set => PingInterval = value;
-        }
-
         /// <summary>Average out the last few results from Ping</summary>
         // const because it's used immediately in _rtt constructor.
         public const int PingWindowSize = 50; // average over 50 * 100ms = 5s
@@ -50,11 +42,12 @@ namespace Mirror
         }
 #else
         // need stopwatch for older Unity versions, but it's quite slow.
-        // CAREFUL: unlike Time.time, this is not a FRAME time.
-        //          it changes during the frame too.
+        // CAREFUL: unlike Time.time, the stopwatch time is not a FRAME time.
+        //          it changes during the frame, so we have an extra step to "cache" it in EarlyUpdate.
         static readonly Stopwatch stopwatch = new Stopwatch();
         static NetworkTime() => stopwatch.Start();
-        public static double localTime => stopwatch.Elapsed.TotalSeconds;
+        static double localFrameTime;
+        public static double localTime => localFrameTime;
 #endif
 
         /// <summary>The time in seconds since the server started.</summary>
@@ -107,6 +100,10 @@ namespace Mirror
         // this gives much better and immediately accurate results.
         // -> snapshot interpolation timeline tries to emulate a server timeline without hard offset corrections.
         // -> predictedTime does have hard offset corrections, so might as well use Time.time directly for this.
+        //
+        // note that predictedTime over unreliable is enough!
+        // even with reliable components, it gives better results than if we were
+        // to implemented predictedTime over reliable channel.
         public static double predictedTime
         {
             [MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -230,6 +227,13 @@ namespace Mirror
             // how long did this message take to come back
             double newRtt = localTime - message.localTime;
             conn._rtt.Add(newRtt);
+        }
+
+        internal static void EarlyUpdate()
+        {
+#if !UNITY_2020_3_OR_NEWER
+            localFrameTime = stopwatch.Elapsed.TotalSeconds;
+#endif
         }
     }
 }
